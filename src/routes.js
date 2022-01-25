@@ -15,7 +15,7 @@ const routes = {
                 /* Get Latest */
                 const fetchedPairs = await Rates.find().sort({ createdAt : -1 }).limit(3);
 
-                return fetchedPairs
+                return fetchedPairs;
             }
         },
         {
@@ -105,16 +105,14 @@ const routes = {
                     });
             
                     const saveBrlRates = await newBrlRates.save();
-    
-                    // res.status(200).json({
-                    //     Response: true,
-                    //     Message: 'Rates created.',
-                    // });
-                    return 'ok'
+
+                    return h.response({
+                        msg: 'Rates created'
+                    }).code(201);
+
                 } catch(error) {
                     console.log(error)
                 }
-    
             }
         }
       ]);
