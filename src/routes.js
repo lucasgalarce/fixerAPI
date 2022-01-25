@@ -9,7 +9,7 @@ const routes = {
       server.route([
         {
             method: 'GET',
-            path: '/pairs',
+            path: '/getpairs',
             handler: async (request, h) => {
 
                 /* Get Latest */
