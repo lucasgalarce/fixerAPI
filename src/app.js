@@ -13,6 +13,17 @@ const init = async () => {
     await server.register(routes);
     await server.start();
     console.log('Server running on %s', server.info.uri);
+
+    server.route([
+        {
+            method: 'GET',
+            path: '/',
+            handler: async (request, h) => {
+
+                return 'Its ok';
+            }
+        },
+    ])
 };
 
 process.on('unhandledRejection', (err) => {

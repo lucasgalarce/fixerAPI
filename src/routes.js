@@ -9,14 +9,6 @@ const routes = {
       server.route([
         {
             method: 'GET',
-            path: '/',
-            handler: async (request, h) => {
-
-                return 'Its ok';
-            }
-        },
-        {
-            method: 'GET',
             path: '/getpairs',
             handler: async (request, h) => {
 
