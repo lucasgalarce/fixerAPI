@@ -32,9 +32,25 @@ const ratesSchema = new Schema({
     },
     newRates: {
         type: Object,
-    }
-    
-});
+    },
+},
+{
+    timestamps: true,
+},
+);
+
+ratesSchema.methods.toJSON = function() {
+    let rate = this;
+    let rateObject = rate.toObject();
+    delete rateObject._id;
+    delete rateObject.id;
+    delete rateObject.timestamp;
+    delete rateObject.createdAt;
+    delete rateObject.updatedAt;
+    delete rateObject.__v;
+
+    return rateObject;
+}
 
 const Rates = mongoose.model('Rates', ratesSchema);
 export default Rates;
