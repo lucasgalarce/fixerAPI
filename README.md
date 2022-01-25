@@ -18,6 +18,13 @@ Clone the repo
 git clone https://github.com/lucasgalarce/fixerAPI
 ```
 
+## Aditional you need add .env file with:
+```
+MONGODB_URI=[Your mongo uri]
+ACCESS_KEY=[Your acces key from data.fixer]
+BASE_URL=http://data.fixer.io/api/
+```
+
 Install NPM packages
 
 ```
