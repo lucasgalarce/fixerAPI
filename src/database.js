@@ -1,11 +1,10 @@
 import mongoose from 'mongoose'
-
-// MongoDB Connection
-// mongoose.set('useCreateIndex', true);
+import config from './config/index.js'
 
 try {
+	
 	mongoose.connect(
-		`mongodb+srv://${process.env.DB_USER || 'admin'}:${process.env.DB_PASS || 'admin'}@cluster0.opnyh.mongodb.net/fixerapi`,
+		`mongodb+srv://${config.DB_USER || 'admin'}:${config.DB_PASS || 'admin'}@cluster0.opnyh.mongodb.net/fixerapi`,
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,

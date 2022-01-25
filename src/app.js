@@ -1,8 +1,10 @@
 import Hapi from '@hapi/hapi';
 import fetch from 'node-fetch';
-import './database.js';
 import { v4 as uuidv4 } from 'uuid';
+
+import './database.js';
 import Rates from './models/rates.js';
+import config from './config/index.js'
 
 
 const init = async () => {
@@ -24,20 +26,19 @@ const init = async () => {
                 
                 const fee = request.payload?.fee || 0;
 
-                const response  = await fetch(`http://data.fixer.io/api/latest?access_key=824e753b9d8f1bf170e5adf80e7788e9&symbols=USD,ARS,BRL`);
+                const response  = await fetch(`${config.BASE_URL}/latest?access_key=${config.ACCESS_KEY}&symbols=USD,ARS,BRL`);
                 const body = await response.text();
                 const data = JSON.parse(body);
 
                 const eurRateId = uuidv4();
 
-                /* Obtener fee param y ahcer los calculos de los nuevos rates */
-                console.log(data.rates)
                 data.newRates = {};
                 const usdRates = {}
                 const usdNewRates = {};
                 const brlRates = {}
                 const brlNewRates = {};
                 
+                /* Get fee param and calculate new rates */
                 Object.entries(data.rates).forEach(([key, value]) => {
 
                     /* New rates for EUR (rate + fee) */
