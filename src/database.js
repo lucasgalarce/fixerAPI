@@ -4,7 +4,7 @@ import config from './config/index.js'
 try {
 	
 	mongoose.connect(
-		`mongodb+srv://${config.DB_USER || 'admin'}:${config.DB_PASS || 'admin'}@cluster0.opnyh.mongodb.net/fixerapi`,
+		`${config.MONGODB_URI}`,
 		{
 			useNewUrlParser: true,
 			useUnifiedTopology: true,
