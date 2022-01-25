@@ -1,5 +1,6 @@
 import fetch from 'node-fetch';
 import { v4 as uuidv4 } from 'uuid';
+import Joi from "joi";
 import Rates from './models/rates.js';
 import config from './config/index.js'
 
@@ -18,6 +19,11 @@ const routes = {
         {
             method: 'GET',
             path: '/getpairs',
+            options: {
+                description: 'Get pair',
+                notes: 'Return array of pairs with original rates and new rates',
+                tags: ['api'],
+            },
             handler: async (request, h) => {
 
                 /* Get Latest */
@@ -29,6 +35,17 @@ const routes = {
         {
             method: 'POST',
             path: '/createrates',
+            options: {
+                description: 'This endpoint fetch last rates from FX. And save in db all pairs info',
+                notes: 'Return a succesfull message',
+                tags: ['api'],
+                validate: {
+                    payload: Joi.object({
+                        fee: Joi.number()
+                        .description('To add a mark-up fee over the obtained FX rate.')
+                    })
+                }
+            },
             handler: async (request, h) => {
                 
                 try {
